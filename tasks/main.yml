@@ -1,0 +1,12 @@
+---
+- name: ensure locales are installed
+  sudo: true
+  apt: pkg=locales state=installed
+
+- name: "ensure {{default_locale}} locale exist"
+  sudo: true
+  shell: "locale-gen {{default_locale}}"
+
+- name: "set {{default_locale}} as default"
+  sudo: true
+  template: src=locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
