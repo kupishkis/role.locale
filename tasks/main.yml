@@ -3,10 +3,11 @@
   sudo: true
   apt: pkg=locales state=installed
 
-- name: "ensure {{default_locale}} locale exist"
+- name: "ensure local locale is set"
   sudo: true
-  shell: "locale-gen {{default_locale}}"
+  template: src=locale.j2 dest=/usr/share/i18n/locales owner=root group=root mode=0644
 
-- name: "set {{default_locale}} as default"
+- name: "ensure locale is generated"
   sudo: true
-  template: src=locale.j2 dest=/etc/default/locale owner=root group=root mode=0644
+  shell: "locale-gen"
+
