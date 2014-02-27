@@ -5,7 +5,7 @@
 
 - name: "ensure local locale is set"
   sudo: true
-  template: src=locale.j2 dest=/usr/share/i18n/locales owner=root group=root mode=0644
+  template: src=locale.j2 dest=/etc/locale.gen
 
 - name: "ensure locale is generated"
   sudo: true
