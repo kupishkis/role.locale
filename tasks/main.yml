@@ -6,8 +6,10 @@
 - name: "ensure local locale is set"
   sudo: true
   template: src=locale.j2 dest=/etc/locale.gen
+  register: locale_change
 
 - name: "ensure locale is generated"
   sudo: true
   shell: "locale-gen"
+  when: locale_change.changed
 
